@@ -6,6 +6,7 @@ body {
   background-image: linear-gradient(to bottom right, #7a5cff 0%, #3cd644 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  margin: 0;
 }
 
 body {

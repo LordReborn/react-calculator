@@ -14,26 +14,21 @@ const App: FC = () => {
 
   const value = items.length > 0 ? items[items.length - 1] : "0";
 
+  const validationNewStack = () => {
+    const lastCharacterIsNumber = /\d$/;
+    let validation = lastCharacterIsNumber.test(stack);
+    let newStack = validation ? stack : stack.substring(0, stack.length - 1);
+    return newStack;
+  };
+
   const handleOperation = (operation: string) => {
-    //Valid if the last character is a number or a symbol
-    let validation = /\d$/.test(stack);
-    if (validation) {
-      setStack(`${stack}${operation}`);
-    } else {
-      let newStack = stack.substring(0, stack.length - 1);
-      setStack(`${newStack}${operation}`);
-    }
+    let newStack = validationNewStack();
+    setStack(`${newStack}${operation}`);
   };
 
   const handleResult = () => {
-    let validation = /\d$/.test(stack);
-    //if the string ends with a symbol it returns error
-    if (validation) {
-      setStack(evaluate(stack).toString());
-    } else {
-      let newStack = stack.substring(0, stack.length - 1);
-      setStack(evaluate(newStack).toString());
-    }
+    let newStack = validationNewStack();
+    setStack(evaluate(newStack).toString());
   };
 
   return (
